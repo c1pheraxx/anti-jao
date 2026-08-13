@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Jão</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🛡️</div>
+        <div class="brand-text">
+          <h1>Anti-Jão</h1>
+          <span class="version">v2.0.0</span>
+        </div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="masterToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </header>
+
+    <!-- Status Card -->
+    <div class="card status-card">
+      <div class="status-header">
+        <span class="status-label">Modo de operação</span>
+        <span id="modeBadge" class="badge badge-warning">MODERADO</span>
+      </div>
+      <div class="mode-selector">
+        <button id="btnModerado" class="mode-btn active" data-mode="moderado">
+          <span class="mode-icon">🛡️</span>
+          <span class="mode-name">Moderado</span>
+          <span class="mode-desc">Bloqueia apenas conteúdo óbvio</span>
+        </button>
+        <button id="btnAgressivo" class="mode-btn" data-mode="agressivo">
+          <span class="mode-icon">⚔️</span>
+          <span class="mode-name">Agressivo</span>
+          <span class="mode-desc">Bloqueia qualquer menção</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div id="statTotal" class="stat-value">0</div>
+        <div class="stat-label">Total bloqueado</div>
+      </div>
+      <div class="stat-card">
+        <div id="statPage" class="stat-value">0</div>
+        <div class="stat-label">Nesta página</div>
+      </div>
+      <div class="stat-card">
+        <div id="statSites" class="stat-value">0</div>
+        <div class="stat-label">Sites filtrados</div>
+      </div>
+      <div class="stat-card">
+        <div id="statScore" class="stat-value">--</div>
+        <div class="stat-label">Score médio</div>
+      </div>
+    </div>
+
+    <!-- Recent Blocks -->
+    <div class="card">
+      <div class="card-header">
+        <h3>🚫 Últimos bloqueios</h3>
+        <button id="btnClearHistory" class="btn-text" title="Limpar histórico">Limpar</button>
+      </div>
+      <div id="recentList" class="recent-list">
+        <div class="empty-state">
+          <span class="empty-icon">📭</span>
+          <p>Nenhum bloqueio recente</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Sites -->
+    <div class="card">
+      <div class="card-header">
+        <h3>🌐 Sites mais filtrados</h3>
+      </div>
+      <div id="sitesList" class="sites-list">
+        <div class="empty-state">
+          <span class="empty-icon">🌐</span>
+          <p>Nenhum site filtrado ainda</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button id="btnSettings" class="btn btn-primary">
+        <span>⚙️</span> Configurações
+      </button>
+      <button id="btnReport" class="btn btn-secondary">
+        <span>📊</span> Relatório completo
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>🔒 Tudo processado localmente</span>
+      <span>•</span>
+      <span id="privacyLink" class="link">Privacidade</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

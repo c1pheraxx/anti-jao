@@ -1,0 +1,207 @@
+/**
+ * Anti-Jão Extension - Content Styles
+ * Estilos aplicados aos elementos bloqueados
+ */
+
+/* Classe principal de ocultação */
+.anti-jao-blocked {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+/* Modo blur (quando hideCompletely = false) */
+.anti-jao-blurred {
+  filter: blur(12px) grayscale(100%) !important;
+  opacity: 0.15 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  transition: filter 0.3s ease, opacity 0.3s ease !important;
+}
+
+.anti-jao-blurred:hover {
+  filter: blur(8px) grayscale(80%) !important;
+  opacity: 0.3 !important;
+}
+
+/* Badge de conteúdo bloqueado (mostrado no lugar do conteúdo oculto) */
+.anti-jao-badge {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 16px !important;
+  background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  gap: 8px !important;
+  margin: 4px 0 !important;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3) !important;
+  animation: antiJaoFadeIn 0.3s ease !important;
+}
+
+.anti-jao-badge::before {
+  content: "🛡️" !important;
+  font-size: 16px !important;
+}
+
+/* Animação de fade in */
+@keyframes antiJaoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast de notificação */
+.anti-jao-toast {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 2147483647 !important;
+  background: #1a1a2e !important;
+  color: #ffffff !important;
+  padding: 12px 20px !important;
+  border-radius: 12px !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  animation: antiJaoSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1px solid rgba(255, 71, 87, 0.3) !important;
+  max-width: 320px !important;
+}
+
+.anti-jao-toast .toast-icon {
+  font-size: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.anti-jao-toast .toast-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.anti-jao-toast .toast-title {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+
+.anti-jao-toast .toast-desc {
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.anti-jao-toast .toast-close {
+  margin-left: auto !important;
+  background: none !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  padding: 0 4px !important;
+  line-height: 1 !important;
+}
+
+.anti-jao-toast .toast-close:hover {
+  color: #ffffff !important;
+}
+
+@keyframes antiJaoSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes antiJaoSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+  }
+}
+
+/* Indicador de proteção ativa no canto da página */
+.anti-jao-shield {
+  position: fixed !important;
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 2147483646 !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: linear-gradient(135deg, #ff4757, #ff6b81) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 18px !important;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.anti-jao-shield:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(255, 71, 87, 0.5) !important;
+}
+
+.anti-jao-shield .shield-count {
+  position: absolute !important;
+  top: -4px !important;
+  right: -4px !important;
+  background: #ffffff !important;
+  color: #ff4757 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 1px 5px !important;
+  border-radius: 10px !important;
+  min-width: 16px !important;
+  text-align: center !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Tooltip do escudo */
+.anti-jao-shield-tooltip {
+  position: absolute !important;
+  top: 44px !important;
+  right: 0 !important;
+  background: #1a1a2e !important;
+  color: #ffffff !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.anti-jao-shield:hover .anti-jao-shield-tooltip {
+  opacity: 1 !important;
+}

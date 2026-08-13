@@ -1,0 +1,33 @@
+{
+  "name": "anti-jao",
+  "version": "2.0.0",
+  "description": "Bloqueie, oculte e filtre qualquer conteúdo relacionado ao cantor Jão na internet.",
+  "private": true,
+  "scripts": {
+    "build:firefox": "node scripts/build-firefox.js",
+    "build:chrome": "node scripts/build-chrome.js",
+    "lint": "echo 'Linting not configured yet'",
+    "test": "echo 'Tests not configured yet'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seu-usuario/anti-jao.git"
+  },
+  "keywords": [
+    "browser-extension",
+    "content-filter",
+    "privacy",
+    "firefox-addon",
+    "chrome-extension",
+    "jao"
+  ],
+  "author": "Anti-Jão Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seu-usuario/anti-jao/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/anti-jao#readme",
+  "devDependencies": {
+    "jszip": "^3.10.1"
+  }
+}

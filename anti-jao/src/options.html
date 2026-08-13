@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Jão - Configurações</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-logo">🛡️</div>
+        <div>
+          <div class="sidebar-title">Anti-Jão</div>
+          <div class="sidebar-version">v2.0.0</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="general">
+          <span>⚙️</span> Geral
+        </button>
+        <button class="nav-item" data-tab="keywords">
+          <span>🔤</span> Palavras-chave
+        </button>
+        <button class="nav-item" data-tab="advanced">
+          <span>🔬</span> Avançado
+        </button>
+        <button class="nav-item" data-tab="stats">
+          <span>📊</span> Estatísticas
+        </button>
+        <button class="nav-item" data-tab="about">
+          <span>ℹ️</span> Sobre
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Tab: Geral -->
+      <section id="tab-general" class="tab active">
+        <header class="tab-header">
+          <h1>⚙️ Configurações Gerais</h1>
+          <p class="tab-desc">Personalize o comportamento básico da extensão</p>
+        </header>
+
+        <div class="settings-group">
+          <h3>Ativação</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Ativar Anti-Jão</label>
+              <span class="setting-desc">Liga/desliga a proteção em todas as páginas</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optEnabled" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Modo de operação</h3>
+          <div class="mode-cards">
+            <div class="mode-card" data-mode="moderado">
+              <div class="mode-card-icon">🛡️</div>
+              <div class="mode-card-title">Moderado</div>
+              <div class="mode-card-desc">
+                Bloqueia apenas conteúdo com alta confiança de ser relacionado ao Jão. 
+                Menor risco de falsos positivos.
+              </div>
+              <div class="mode-card-check">✓</div>
+            </div>
+            <div class="mode-card" data-mode="agressivo">
+              <div class="mode-card-icon">⚔️</div>
+              <div class="mode-card-title">Agressivo</div>
+              <div class="mode-card-desc">
+                Bloqueia qualquer menção ou contexto relacionado. 
+                Máxima proteção, mas pode bloquear conteúdo legítimo.
+              </div>
+              <div class="mode-card-check">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Interface</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Mostrar contador na página</label>
+              <span class="setting-desc">Exibe um escudo flutuante com a contagem de bloqueios</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optShowCount" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Notificações toast</label>
+              <span class="setting-desc">Mostra alertas quando conteúdo é bloqueado (máx. 5 por página)</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optShowNotifications">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Whitelist</h3>
+          <p class="setting-desc">Sites onde a extensão não atuará (um por linha)</p>
+          <textarea id="optWhitelist" class="textarea" rows="4" placeholder="exemplo.com.br&#10;meusite.com"></textarea>
+        </div>
+      </section>
+
+      <!-- Tab: Palavras-chave -->
+      <section id="tab-keywords" class="tab">
+        <header class="tab-header">
+          <h1>🔤 Palavras-chave</h1>
+          <p class="tab-desc">Gerencie os termos usados para detectar conteúdo</p>
+        </header>
+
+        <div class="settings-group">
+          <h3>Adicionar palavra personalizada</h3>
+          <div class="input-group">
+            <input type="text" id="newKeyword" class="input" placeholder="Digite uma palavra ou frase...">
+            <button id="btnAddKeyword" class="btn btn-primary">Adicionar</button>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Palavras-chave personalizadas</h3>
+          <div id="customKeywordsList" class="keywords-list">
+            <div class="empty-state">
+              <span class="empty-icon">🔤</span>
+              <p>Nenhuma palavra-chave personalizada</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Palavras-chave padrão</h3>
+          <p class="setting-desc">Estes termos são embutidos e não podem ser removidos</p>
+          <div id="defaultKeywordsList" class="keywords-list keywords-default">
+            <!-- Preenchido via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Avançado -->
+      <section id="tab-advanced" class="tab">
+        <header class="tab-header">
+          <h1>🔬 Configurações Avançadas</h1>
+          <p class="tab-desc">Controle fino do comportamento de detecção</p>
+        </header>
+
+        <div class="settings-group">
+          <h3>Análise de conteúdo</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Análise de contexto</label>
+              <span class="setting-desc">Usa termos musicais para aumentar a confiança da detecção</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optContextAnalysis" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Verificar imagens</label>
+              <span class="setting-desc">Analisa atributos alt/title de imagens</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optCheckImages" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Verificar vídeos</label>
+              <span class="setting-desc">Analisa títulos e descrições de vídeos</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optCheckVideos" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Verificar textos</label>
+              <span class="setting-desc">Analisa conteúdo textual da página</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optCheckText" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Comportamento de bloqueio</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Ocultar completamente</label>
+              <span class="setting-desc">Remove o elemento da página (vs. apenas desfocar)</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="optHideCompletely" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Limiar de relevância</h3>
+          <p class="setting-desc">Score mínimo para considerar um conteúdo como relacionado (0% a 100%)</p>
+          <div class="range-group">
+            <input type="range" id="optMinScore" min="0" max="100" value="30" class="range">
+            <span id="optMinScoreValue" class="range-value">30%</span>
+          </div>
+        </div>
+
+        <div class="settings-group danger-zone">
+          <h3>🚨 Zona de perigo</h3>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Resetar todas as estatísticas</label>
+              <span class="setting-desc">Apaga todo o histórico e contadores (não reversível)</span>
+            </div>
+            <button id="btnResetAll" class="btn btn-danger">Resetar</button>
+          </div>
+          <div class="setting-row">
+            <div class="setting-info">
+              <label>Restaurar configurações padrão</label>
+              <span class="setting-desc">Volta todas as configurações para o estado inicial</span>
+            </div>
+            <button id="btnResetSettings" class="btn btn-danger">Restaurar</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Estatísticas -->
+      <section id="tab-stats" class="tab">
+        <header class="tab-header">
+          <h1>📊 Estatísticas</h1>
+          <p class="tab-desc">Visão geral do desempenho da extensão</p>
+        </header>
+
+        <div class="stats-dashboard">
+          <div class="stat-big">
+            <div id="dashTotal" class="stat-big-value">0</div>
+            <div class="stat-big-label">Conteúdos bloqueados no total</div>
+          </div>
+          <div class="stat-big">
+            <div id="dashSites" class="stat-big-value">0</div>
+            <div class="stat-big-label">Sites diferentes filtrados</div>
+          </div>
+          <div class="stat-big">
+            <div id="dashSince" class="stat-big-value">--</div>
+            <div class="stat-big-label">Protegendo desde</div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Top sites filtrados</h3>
+          <div id="dashTopSites" class="sites-table">
+            <div class="empty-state">
+              <span class="empty-icon">📊</span>
+              <p>Sem dados suficientes</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>Histórico de bloqueios</h3>
+          <div id="dashHistory" class="history-table">
+            <div class="empty-state">
+              <span class="empty-icon">📜</span>
+              <p>Histórico vazio</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab: Sobre -->
+      <section id="tab-about" class="tab">
+        <header class="tab-header">
+          <h1>ℹ️ Sobre o Anti-Jão</h1>
+        </header>
+
+        <div class="about-card">
+          <div class="about-logo">🛡️</div>
+          <h2>Anti-Jão</h2>
+          <p class="about-version">Versão 2.0.0</p>
+          <p class="about-desc">
+            A extensão Anti-Jão foi desenvolvida para oferecer controle total sobre 
+            o conteúdo que você consome na internet. Com tecnologia de análise de texto 
+            e detecção inteligente, ela identifica e oculta qualquer conteúdo relacionado 
+            ao cantor Jão, deixando sua navegação personalizada e livre de distrações.
+          </p>
+        </div>
+
+        <div class="settings-group">
+          <h3>🔒 Privacidade</h3>
+          <ul class="feature-list">
+            <li><span>✅</span> Todos os dados processados localmente no seu navegador</li>
+            <li><span>✅</span> Nenhuma informação enviada para servidores externos</li>
+            <li><span>✅</span> Sem rastreamento de histórico de navegação</li>
+            <li><span>✅</span> Código aberto e auditável</li>
+            <li><span>✅</span> Não coleta dados pessoais</li>
+          </ul>
+        </div>
+
+        <div class="settings-group">
+          <h3>⚡ Funcionalidades</h3>
+          <ul class="feature-list">
+            <li><span>🛡️</span> Bloqueio inteligente com análise de contexto</li>
+            <li><span>🔤</span> Lista editável de palavras-chave</li>
+            <li><span>📊</span> Estatísticas detalhadas de bloqueios</li>
+            <li><span>🎚️</span> Modo moderado e agressivo</li>
+            <li><span>🌐</span> Suporte a todos os sites principais</li>
+            <li><span>⚙️</span> Configurações avançadas de detecção</li>
+          </ul>
+        </div>
+
+        <div class="settings-group">
+          <h3>🔗 Links</h3>
+          <div class="link-list">
+            <a href="https://github.com/anti-jao/extension" target="_blank" class="link-item">
+              <span>📁</span> Repositório no GitHub
+            </a>
+            <a href="https://github.com/anti-jao/extension/issues" target="_blank" class="link-item">
+              <span>🐛</span> Reportar um bug
+            </a>
+            <a href="https://github.com/anti-jao/extension/blob/main/PRIVACY.md" target="_blank" class="link-item">
+              <span>🔒</span> Política de privacidade
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
