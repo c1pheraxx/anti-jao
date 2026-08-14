@@ -54,7 +54,7 @@ cd anti-jao/src
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/anti-jao.git
+git clone https://github.com/c1pheraxx/anti-jao.git
 cd anti-jao
 
 # 2. Gere o pacote .xpi
